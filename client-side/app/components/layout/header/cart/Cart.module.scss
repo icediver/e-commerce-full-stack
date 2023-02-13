@@ -3,7 +3,7 @@
 		@apply flex items-center;
 
 		.badge {
-			@apply mr-4 flex h-5 w-5 items-center justify-center rounded-full  p-1 text-sm text-white;
+			@apply mr-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary  p-1 text-sm text-white;
 		}
 
 		.text {
@@ -21,11 +21,11 @@
 		}
 
 		.price {
-			@apply mt-1 text-sm;
+			@apply text-white mt-1 text-sm;
 		}
 
 		.variation {
-			@apply text-xs opacity-70;
+			@apply text-white text-xs opacity-70;
 		}
 	}
 }

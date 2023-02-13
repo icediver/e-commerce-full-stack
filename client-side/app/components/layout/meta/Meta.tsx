@@ -7,10 +7,11 @@ import { onlyText } from '@/utils/clear-text'
 import { siteName, titleMerge } from './meta.config'
 import { ISeo } from './meta.interface'
 
+
 const Meta: FC<PropsWithChildren<ISeo>> = ({
 	title,
 	description,
-	image = '/images/logo.png',
+	image = '/images/logo.svg',
 	children,
 	type = 'website'
 }) => {
