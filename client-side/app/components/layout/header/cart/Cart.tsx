@@ -1,13 +1,4 @@
-import {
-	Button,
-	Drawer,
-	DrawerBody,
-	DrawerCloseButton,
-	DrawerContent,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerOverlay
-} from '@chakra-ui/react'
+
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { FC, useRef, useState } from 'react'
@@ -49,18 +40,11 @@ const Cart: FC = () => {
 				<span className={styles.text}>MY BASKET</span>
 			</button>
 
-			<Drawer
-				isOpen={isOpen}
-				placement='right'
-				onClose={() => setIsOpen(false)}
-				finalFocusRef={btnRef}
-			>
-				<DrawerOverlay />
-				<DrawerContent>
-					<DrawerCloseButton />
-					<DrawerHeader>My basket</DrawerHeader>
+			<div>
+				
+					<div>My cart</div>
 
-					<DrawerBody>
+					
 						<div className={styles.cart}>
 							{cart.length ? (
 								cart.map(item => <CartItem item={item} key={item.id} />)
@@ -68,23 +52,16 @@ const Cart: FC = () => {
 								<div>Basket is empty!</div>
 							)}
 						</div>
-					</DrawerBody>
+					
 
-					<DrawerFooter
-						justifyContent='space-between'
-						borderTopColor={'#F7F4F0'}
-						borderTopWidth={1}
-					>
 						<div className={styles.footer}>
 							<div>Total:</div>
 							<div>{formatToCurrency(total)}</div>
 						</div>
-						<Button colorScheme='green' onClick={() => mutate()}>
+						<button  onClick={() => mutate()}>
 							Payment
-						</Button>
-					</DrawerFooter>
-				</DrawerContent>
-			</Drawer>
+						</button>
+			</div>
 		</div>
 	)
 }

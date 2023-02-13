@@ -3,11 +3,12 @@ import { FC } from 'react'
 
 import CartActions from '@/layout/header/cart/cart-item/cart-actions/CartActions'
 
+import { ICartItem } from '@/types/cart.interface'
+
 import { formatToCurrency } from '@/utils/format-to-currency'
 
 import styles from '../Cart.module.scss'
 
-import { ICartItem } from '@/types/cart.interface'
 
 const CartItem: FC<{ item: ICartItem }> = ({ item }) => {
 	return (
@@ -23,7 +24,7 @@ const CartItem: FC<{ item: ICartItem }> = ({ item }) => {
 				<div className={styles.price}>
 					{formatToCurrency(item.product.price)}
 				</div>
-				<div className={styles.variation}>{item.size}</div>
+				{/*<div className={styles.variation}>{item.size}</div>*/}
 				<CartActions item={item} />
 			</div>
 		</div>
