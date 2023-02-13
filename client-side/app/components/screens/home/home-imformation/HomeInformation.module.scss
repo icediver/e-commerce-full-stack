@@ -1,0 +1,24 @@
+.row {
+	//	@apply border-b-0;
+	.column {
+		@apply flex-col border-t-2 border-black p-3;
+		.number {
+			@apply font-normal text-4xl text-white;
+		}
+		
+		.customers {
+			@apply text-white/60 text-sm;
+		}
+		
+		.content {
+			@apply p-10;
+			.title {
+				@apply font-normal text-white mb-2;
+			}
+			
+			.content {
+				@apply text-white/60 text-sm;
+			}
+		}
+	}
+}
