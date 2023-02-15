@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+	.btn-link {
+		@apply uppercase text-white text-sm border-b border-white/20 tracking-widest;
+	}
+	
+	.font-serif {
+		font-family: 'Playfair Display', serif;
+		
+	}
+}
+
 html, body {
 	@apply bg-[#131313];
 }
@@ -21,7 +32,4 @@ body {
 	opacity: 0.2 !important;
 }
 
-.font-serif {
-	font-family: 'Playfair Display', serif;
-	
-}
+

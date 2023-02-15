@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { FC } from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
+import { FC } from 'react';
 
-import Column from '@/ui/grid/Column'
+import Column from '@/ui/grid/Column';
 
 
 const HeaderLogo: FC = () => {
 	return (
-		<Column size={2}>
+		<Column size={3}>
 			<Link href='/client-side/pages' className={'flex items-center'}>
 				<Image
 					src='/images/logo.svg'
@@ -30,7 +30,7 @@ const HeaderLogo: FC = () => {
 				</span>
 			</Link>
 		</Column>
-	)
-}
+	);
+};
 
-export default HeaderLogo
+export default HeaderLogo;

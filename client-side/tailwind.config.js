@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors');
 
 const constants = {
 	primary: '#A40D0D',
@@ -8,7 +8,7 @@ const constants = {
 	gray: '#9D9C9D',
 	'dark-gray': '#5D5D5D',
 	black: '#090909'
-}
+};
 
 module.exports = {
 	content: ['./pages/**/*.{js,ts,jsx,tsx}', './app/**/*.{js,ts,jsx,tsx}'],
@@ -60,4 +60,4 @@ module.exports = {
 		}
 	},
 	plugins: []
-}
+};

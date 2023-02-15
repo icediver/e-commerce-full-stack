@@ -19,7 +19,7 @@
 		}
 		
 		.button {
-			@apply uppercase text-white text-sm border-b border-white/20;
+			@apply btn-link;
 		}
 	}
 }

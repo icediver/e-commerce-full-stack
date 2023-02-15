@@ -18,7 +18,7 @@ const HotSale: FC = () => {
 					<span className={styles.price}>{formatToCurrency(195)}</span>
 					<span className={styles['old-price']}>{formatToCurrency(295)}</span>
 				</div>
-				<button className={styles.button}>By now</button>
+				<button className={'btn-link'}>By now</button>
 			</div>
 		</div>
 	);
