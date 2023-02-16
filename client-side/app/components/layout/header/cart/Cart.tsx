@@ -1,69 +1,79 @@
+import { useMutation } from '@tanstack/react-query';
+import cn from 'clsx';
+import { useRouter } from 'next/router';
+import { FC, useState } from 'react';
+import { FiShoppingCart } from 'react-icons/fi';
 
-import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/router'
-import { FC, useRef, useState } from 'react'
+import SquareButton from '@/ui/square-button/SquareButton';
 
-import { useCart } from '@/hooks/useCart'
+import { useCart } from '@/hooks/useCart';
+import { useOutside } from '@/hooks/useOutside';
 
-import { formatToCurrency } from '@/utils/format-to-currency'
+import { formatToCurrency } from '@/utils/format-to-currency';
 
-import styles from './Cart.module.scss'
-import CartItem from './cart-item/CartItem'
-import { PaymentService } from '@/services/PaymentService'
+import styles from './Cart.module.scss';
+import CartItem from './cart-item/CartItem';
+import { PaymentService } from '@/services/PaymentService';
+
 
 const Cart: FC = () => {
-	const [isOpen, setIsOpen] = useState(false)
-	const btnRef = useRef<HTMLButtonElement>(null)
+	const [isOpen, setIsOpen] = useState(false);
+	const { ref, isShow, setIsShow } = useOutside(false);
 
-	const { cart, total } = useCart()
+	const { cart, total } = useCart();
 
-	const { push } = useRouter()
+	const { push } = useRouter();
 
 	const { mutate } = useMutation(
 		['create payment'],
 		() => PaymentService.createPayment(total),
 		{
 			onSuccess(data) {
-				push(data.confirmation.confirmation_url)
+				push(data.confirmation.confirmation_url);
 			}
 		}
-	)
+	);
 
 	return (
-		<div className={styles['wrapper-cart']}>
-			<button
-				className={styles.heading}
-				onClick={() => setIsOpen(!isOpen)}
-				ref={btnRef}
-			>
-				<span className={styles.badge}>{cart.length}</span>
-				<span className={styles.text}>MY BASKET</span>
-			</button>
+		<div className={styles['wrapper-cart']} ref={ref}>
+			<SquareButton
+				Icon={FiShoppingCart}
+				onClick={() => {
+					setIsShow(!isShow);
+				}}
+				number={5}
+			/>
+			<div className={styles.overflow}>
+				<div
+					className={cn(
+						styles.modal,
+						'menu',
+						isShow ? 'open-menu' : 'close-menu'
+					)}
+				>
+					<div className={styles.title}>My cart</div>
 
-			<div>
-				
-					<div>My cart</div>
+					<div className={styles.cart}>
+						{cart.length ? (
+							cart.map(item => <CartItem item={item} key={item.id} />)
+						) : (
+							<div>Basket is empty!</div>
+						)}
+					</div>
 
-					
-						<div className={styles.cart}>
-							{cart.length ? (
-								cart.map(item => <CartItem item={item} key={item.id} />)
-							) : (
-								<div>Basket is empty!</div>
-							)}
-						</div>
-					
-
-						<div className={styles.footer}>
-							<div>Total:</div>
-							<div>{formatToCurrency(total)}</div>
-						</div>
-						<button  onClick={() => mutate()}>
+					<div className={styles.footer}>
+						<div>Total:</div>
+						<div>{formatToCurrency(total)}</div>
+					</div>
+					<div className={'text-center'}>
+						<button className={'btn-link mt-5 mb-2'} onClick={() => mutate()}>
 							Payment
 						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Cart
+export default Cart;
